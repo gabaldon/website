@@ -51,7 +51,7 @@ export default defineNuxtConfig({
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: 'https://gabaldon.github.io/website/meta-image.png',
+          content: '/meta-image.png',
         },
         {
           hid: 'twitter:image:alt',
