@@ -3,7 +3,21 @@ import svgLoader from 'vite-svg-loader'
 import { languageLocales } from './constants'
 
 export default defineNuxtConfig({
+  ssr: true,
+  routeRules: {
+    '/assets/**': {
+      headers: { 'Cache-Control': 'max-age=3600, immutable' },
+    },
+    '/_nuxt/**': {
+      headers: { 'Cache-Control': 'max-age=3600, immutable' },
+    },
+  },
+  experimental: {
+    payloadExtraction: false,
+  },
+  spaLoadingTemplate: false,
   app: {
+    baseURL: '/website/',
     head: {
       title: 'Wit/Oracle: The most powerful oracle, provably.',
       meta: [
@@ -37,7 +51,7 @@ export default defineNuxtConfig({
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: '/meta-image.png',
+          content: 'https://gabaldon.github.io/website/meta-image.png',
         },
         {
           hid: 'twitter:image:alt',
@@ -78,6 +92,18 @@ export default defineNuxtConfig({
         },
       ],
       link: [
+        {
+          rel: 'preload',
+          href: '/fonts/nimbusmono-regular.woff',
+          as: 'font',
+          type: 'font/woff',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/nimbusmono-bold.woff',
+          as: 'font',
+          type: 'font/woff',
+        },
         { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/favicon.ico' },
         {
           rel: 'icon',
@@ -134,7 +160,7 @@ export default defineNuxtConfig({
     },
     locales: Object.values(languageLocales),
   },
-  css: ['~/assets/styles/tailwind.css'],
+  css: ['~/assets/styles/tailwind.css', '~/assets/styles/main.scss'],
   components: [{ path: '~/components', pathPrefix: false }],
   vite: {
     plugins: [
