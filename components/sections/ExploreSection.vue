@@ -12,11 +12,13 @@
 
         <i18n-t
           keypath="explore.title.main"
-          class="title-h2 font-bold mr-0 sm:mr-sm text-white-50 h-max"
+          class="title-h2 font-bold mr-0 sm:mr-sm text-white-50 h-max break-keep"
           tag="h2"
           scope="global"
         >
-          <span class="text-black-950">{{ $t('explore.title.witnet') }}</span>
+          <span class="text-black-950 break-keep inline-block">{{
+            $t('explore.title.witnet')
+          }}</span>
         </i18n-t>
       </div>
 
